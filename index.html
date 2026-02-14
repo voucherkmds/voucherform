@@ -3,12 +3,98 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Voucher-kmds</title>
+    <title>Cek Voucher Anda</title>
     <link rel="stylesheet" href="style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+        .page-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-subtitle {
+            color: var(--text-sec);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .input-enhanced {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #f8fafc;
+        }
+
+        .input-enhanced:focus {
+            background-color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(141, 110, 99, 0.15);
+            outline: none;
+        }
+
+        .btn-primary {
+            width: 100%;
+            margin-top: 15px;
+            background: linear-gradient(135deg, var(--accent) 0%, #6d4c41 100%);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(141, 110, 99, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(141, 110, 99, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Modal Refinements */
+        .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+    </style>
   </head>
   <body>
     <div class="background-blobs">
@@ -20,48 +106,60 @@
     <div class="container">
       <div class="card">
         <div id="entryView">
-          <h1>🎉 Cek Voucher kamu disini !</h1>
-          <p class="subtitle">
-            Masukkan kode voucher kamu untuk melihat hadiahnya, semoga beruntung!
+          <h1 class="page-title">🎉 Cek Voucher Disini!</h1>
+          <p class="page-subtitle">
+            Masukkan data diri dan kode unik voucher Anda untuk melihat hadiah spesial yang menanti. Semoga beruntung!
           </p>
 
           <div class="input-group">
-            <input
-              type="text"
-              id="userName"
-              placeholder="Nama Lengkap"
-              class="input-field"
-              autocomplete="name"
-            />
-            <input
-              type="tel"
-              id="userPhone"
-              placeholder="No. WhatsApp / HP"
-              class="input-field"
-              autocomplete="tel"
-            />
-            <input
-              type="text"
-              id="voucherCode"
-              placeholder="Kode Voucher (Contoh: ABC12345)"
-              autocomplete="off"
-            />
-            <button id="checkBtn">KLAIM VOUCHER</button>
+            <div class="form-group">
+                <label for="userName" class="form-label">Nama Lengkap</label>
+                <input
+                  type="text"
+                  id="userName"
+                  placeholder="Contoh: Budi Santoso"
+                  class="input-enhanced"
+                  autocomplete="name"
+                />
+            </div>
+            
+            <div class="form-group">
+                <label for="userPhone" class="form-label">Nomor WhatsApp / HP</label>
+                <input
+                  type="tel"
+                  id="userPhone"
+                  placeholder="Contoh: 081234567890"
+                  class="input-enhanced"
+                  autocomplete="tel"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="voucherCode" class="form-label">Kode Voucher</label>
+                <input
+                  type="text"
+                  id="voucherCode"
+                  placeholder="Contoh: KODE123"
+                  class="input-enhanced"
+                  autocomplete="off"
+                  style="text-transform: uppercase; letter-spacing: 1px; font-weight: 600;"
+                />
+            </div>
+
+            <button id="checkBtn" class="btn-primary">🔍 KLAIM VOUCHER SEKARANG</button>
           </div>
         </div>
       </div>
     </div>
 
-
     <div id="customModal" class="modal hidden">
         <div class="modal-content">
-            <div class="modal-icon" id="modalIcon">⚠️</div>
-            <h2 id="modalTitle">Perhatian</h2>
-            <p id="modalMessage">Pesan goes here</p>
-            <button id="modalBtn">OK</button>
+            <span class="modal-icon" id="modalIcon">⚠️</span>
+            <h2 id="modalTitle" style="margin-bottom: 10px;">Perhatian</h2>
+            <p id="modalMessage" style="margin-bottom: 25px; line-height: 1.5;">Pesan sistem.</p>
+            <button id="modalBtn" class="btn-primary" style="padding: 12px; margin-top: 0;">MENGERTI</button>
         </div>
     </div>
-
 
     <script src="data.js"></script>
     <script src="script.js"></script>
